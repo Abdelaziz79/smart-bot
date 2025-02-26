@@ -5,6 +5,8 @@ const noteController = require("../controllers/noteController");
 const fileController = require("../controllers/fileController");
 const { handleText, handleHelp } = require("../controllers/botController");
 const aiController = require("../controllers/aiController");
+const movieController = require("../controllers/movieController");
+const scraperController = require("../controllers/scraperController");
 
 module.exports = (bot) => {
   // Start command
@@ -12,6 +14,32 @@ module.exports = (bot) => {
 
   // Help command
   bot.onText(/\/help/, (msg) => handleHelp(msg, bot));
+
+  // Web scraping command - capture the URL after /scrape
+  bot.onText(/\/scrape (.+)/, (msg, match) =>
+    scraperController.handleScrape(msg, match, bot)
+  );
+
+  // Also handle plain /scrape command with no arguments
+  bot.onText(/^\/scrape$/, (msg) => {
+    bot.sendMessage(
+      msg.chat.id,
+      "Please provide a URL to scrape. Example: /scrape https://example.com"
+    );
+  });
+
+  // Add the movie command
+  bot.onText(/\/movie (.+)/, (msg, match) =>
+    movieController.handleMovie(msg, match, bot)
+  );
+
+  // Handle empty movie command
+  bot.onText(/^\/movie$/, (msg) => {
+    bot.sendMessage(
+      msg.chat.id,
+      "Please provide a movie name. Example: /movie The Godfather"
+    );
+  });
 
   // AI response command
   bot.onText(/\/ai (.+)/, (msg, match) =>

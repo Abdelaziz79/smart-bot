@@ -1,0 +1,9 @@
+{
+	"id": "evR0XTQWyRsGvS9",
+	"json": "{\"id\":\"evR0XTQWyRsGvS9\",\"url\":\"https://m.youm7.com/\",\"loadedUrl\":\"https://www.youm7.com/\",\"uniqueKey\":\"https://m.youm7.com\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"state\":4}},\"handledAt\":\"2025-02-26T18:59:21.943Z\"}",
+	"method": "GET",
+	"orderNo": null,
+	"retryCount": 0,
+	"uniqueKey": "https://m.youm7.com",
+	"url": "https://m.youm7.com/"
+}
