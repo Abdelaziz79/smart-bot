@@ -227,23 +227,23 @@ const aiHandleText = async (msg, bot) => {
                   /task [text] - Create a new task
                   /help - Show all available commands
                   /complete [task number] - Mark a task as completed
-                  /tasks - List all your tasks
+                  /tasks - List all user tasks
                   /delete_task [task number] - Delete a task
                   /reminder [time] [message] - Set a reminder (e.g. /reminder 30m Buy milk)
-                  /reminders - List all your reminders
+                  /reminders - List all user reminders
                   /delete_reminder [reminder number] - Delete a reminder
                   /note [title] [content] - Save a note
-                  /notes - List all your notes
+                  /notes - List all user notes
                   /get_note [note number] - Retrieve a specific note
                   /delete_note [note number] - Delete a note
-                  /files - List all your files
-                  /photos - List all your photos 
-                  /videos - List all your videos 
+                  /files - List all user files
+                  /photos - List all user photos 
+                  /videos - List all user videos 
                   /send_file [file number] - Send a file to the user
                   /delete_file [file number] - Delete a file
                   /download [URL] - Download a video from URL
                   /ai [prompt] - Generate AI response
-                  You can also send me images, documents, or audio files, and I'll store them for you!
+                  user can also send me images, documents, or audio files, and I'll store them for you!
                   `,
               },
             ],
