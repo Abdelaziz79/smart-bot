@@ -1,9 +1,7 @@
 // services/reminderService.js
 const cron = require("node-cron");
-
 // Store active reminders in memory for cron jobs
 const activeReminders = new Map();
-
 const Reminder = require("../models/reminder"); // Import the Reminder model
 
 const parseAndScheduleReminder = async (
@@ -20,7 +18,6 @@ const parseAndScheduleReminder = async (
     // Specific time format (e.g., 18:30)
     const [hours, minutes] = timeSpec.split(":").map(Number);
     scheduledTime.setHours(hours, minutes, 0, 0);
-
     // If the time is in the past, schedule for tomorrow
     if (scheduledTime < new Date()) {
       scheduledTime.setDate(scheduledTime.getDate() + 1);
@@ -50,24 +47,31 @@ const parseAndScheduleReminder = async (
   // Generate a unique ID for this cron job
   const cronId = `reminder_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
 
+  // Create and save the reminder first, so we have the ID ready for later reference
+  const newReminder = new Reminder({
+    chatId,
+    text: reminderText,
+    scheduledTime,
+    cronId,
+    completed: false,
+  });
+
+  // Save the reminder to the database
+  await newReminder.save();
+
   // Schedule the reminder using setTimeout
   const cronTime = scheduledTime.getTime() - Date.now();
-
   if (cronTime > 0) {
     const timeout = setTimeout(() => {
       bot.sendMessage(chatId, `⏰ REMINDER: ${reminderText}`);
-
       // Mark as completed
       Reminder.findByIdAndUpdate(newReminder._id, { completed: true }).catch(
         (err) => console.error("Error updating reminder status:", err)
       );
-
       // Remove from active reminders
       activeReminders.delete(cronId);
     }, cronTime);
-
     activeReminders.set(cronId, timeout);
-
     // Store in active reminders
   } else {
     throw new Error(
@@ -83,7 +87,6 @@ const cancelReminder = async (reminder) => {
     clearTimeout(activeReminders.get(reminder.cronId));
     activeReminders.delete(reminder.cronId);
   }
-
   await Reminder.deleteOne({ _id: reminder._id });
 };
 
@@ -102,12 +105,10 @@ const loadReminders = async (bot) => {
       if (timeLeft > 0) {
         const timeout = setTimeout(() => {
           bot.sendMessage(reminder.chatId, `⏰ REMINDER: ${reminder.text}`);
-
           // Mark as completed
           Reminder.findByIdAndUpdate(reminder._id, { completed: true }).catch(
             (err) => console.error("Error updating reminder status:", err)
           );
-
           // Remove from active reminders
           activeReminders.delete(reminder.cronId);
         }, timeLeft);

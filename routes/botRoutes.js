@@ -84,17 +84,7 @@ module.exports = (bot) => {
   );
 
   // Handle regular messages
-  bot.on("message", (msg) => {
-    const chatId = msg.chat.id;
-
-    // Only respond to text messages that aren't commands
-    if (msg.text && !msg.text.startsWith("/")) {
-      bot.sendMessage(
-        chatId,
-        `I'm here to help! Use /help to see what I can do.`
-      );
-    }
-  });
+  bot.on("message", (msg) => aiController.aiHandleText(msg, bot));
 
   // Error handler
   bot.on("polling_error", (error) => {

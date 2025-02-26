@@ -1,17 +1,19 @@
 // videoDownloader.js
-const ytdl = require("ytdl-core");
-const axios = require("axios");
 const fs = require("fs");
 const path = require("path");
-const { getTwitterMedia } = require("twitter-dl");
-const { instagramDL } = require("instagram-url-direct");
-const { tiktokDL } = require("tiktok-scraper-without-watermark");
-const { fbDownloader } = require("fb-downloader");
 
 // We'll use more reliable services and methods
 // npm install youtube-dl-exec ffmpeg-static
 
 const youtubedl = require("youtube-dl-exec");
+
+// const ytdl = require("ytdl-core");
+// const axios = require("axios");
+// const { getTwitterMedia } = require("twitter-dl");
+// const { instagramDL } = require("instagram-url-direct");
+// const { tiktokDL } = require("tiktok-scraper-without-watermark");
+// const { fbDownloader } = require("fb-downloader");
+
 const DOWNLOAD_DIR = "./downloads";
 
 // Ensure download directory exists

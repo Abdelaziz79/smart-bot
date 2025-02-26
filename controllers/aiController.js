@@ -201,7 +201,100 @@ async function handleImageGenerationCommand(msg, match, bot) {
   bot.sendMessage(chatId, "Image generation is not yet implemented.");
 }
 
+const aiHandleText = async (msg, bot) => {
+  const chatId = msg.chat.id;
+  // Only respond to text messages that aren't commands
+  if (msg.text && !msg.text.startsWith("/")) {
+    try {
+      // Send typing action to indicate the bot is processing
+      bot.sendChatAction(chatId, "typing");
+
+      // Send initial status message
+      const statusMsg = await bot.sendMessage(chatId, "🧠 Thinking...");
+
+      // Use the same Gemini model you've already configured
+      const result = await model.generateContent({
+        contents: [
+          {
+            role: "user",
+            parts: [
+              {
+                text: `You are a helpful assistant telegram bot. The user has sent this message: "${msg.text}". 
+                  Provide a helpful response. If it looks like they want to perform a task such as creating a task, reminder, note, or using other bot functions,
+                  suggest the appropriate command they should use with example formatting.
+                  Keep responses concise and friendly.
+                  this the command that bot can do 
+                  /task [text] - Create a new task
+                  /help - Show all available commands
+                  /complete [task number] - Mark a task as completed
+                  /tasks - List all your tasks
+                  /delete_task [task number] - Delete a task
+                  /reminder [time] [message] - Set a reminder (e.g. /reminder 30m Buy milk)
+                  /reminders - List all your reminders
+                  /delete_reminder [reminder number] - Delete a reminder
+                  /note [title] [content] - Save a note
+                  /notes - List all your notes
+                  /get_note [note number] - Retrieve a specific note
+                  /delete_note [note number] - Delete a note
+                  /files - List all your files
+                  /photos - List all your photos 
+                  /videos - List all your videos 
+                  /send_file [file number] - Send a file to the user
+                  /delete_file [file number] - Delete a file
+                  /download [URL] - Download a video from URL
+                  /ai [prompt] - Generate AI response
+                  You can also send me images, documents, or audio files, and I'll store them for you!
+                  `,
+              },
+            ],
+          },
+        ],
+      });
+
+      const response = result.response.text();
+
+      // Format the response with HTML
+      const formattedResponse = formatWithHTML(response);
+
+      // Handle the response with HTML formatting
+      if (formattedResponse.length <= 4000) {
+        // Update the status message with the response
+        await bot.editMessageText(
+          `🤖 <b>Response:</b>\n\n${formattedResponse}`,
+          {
+            chat_id: chatId,
+            message_id: statusMsg.message_id,
+            parse_mode: "HTML",
+          }
+        );
+      } else {
+        // Delete the status message
+        await bot.deleteMessage(chatId, statusMsg.message_id);
+
+        // Send response in chunks
+        const chunks = splitTextIntoChunks(formattedResponse, 4000);
+        for (let i = 0; i < chunks.length; i++) {
+          await bot.sendMessage(
+            chatId,
+            `🤖 <b>Response (Part ${i + 1}/${chunks.length}):</b>\n\n${
+              chunks[i]
+            }`,
+            { parse_mode: "HTML" }
+          );
+        }
+      }
+    } catch (error) {
+      console.error("AI processing error:", error);
+      bot.sendMessage(
+        chatId,
+        "I'm having trouble understanding that right now. Try using specific commands like /help to see what I can do."
+      );
+    }
+  }
+};
+
 module.exports = {
   handleAICommand,
   handleImageGenerationCommand,
+  aiHandleText,
 };

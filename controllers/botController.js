@@ -20,7 +20,12 @@ const handleText = async (msg, bot) => {
       "/get_note [note number] - Retrieve a specific note\n" +
       "/delete_note [note number] - Delete a note\n" +
       "/files - List all your files\n" +
-      "/delete_file [file number] - Delete a file\n\n" +
+      "/photos - List all your photos\n" + // Added
+      "/videos - List all your videos\n" + // Added
+      "/send_file [file number] - Send a file to the user\n" +
+      "/delete_file [file number] - Delete a file\n" +
+      "/download [URL] - Download a video from URL\n" +
+      "/ai [prompt] - Generate AI response\n\n" +
       "You can also send me images, documents, or audio files, and I'll store them for you!"
   );
 };
@@ -54,6 +59,8 @@ const handleHelp = (msg, bot) => {
       "/delete_file [file number] - Delete a file\n\n" +
       "🔸 Downloader:\n" +
       "/download [URL] - Download a video from URL\n" +
+      "🔸 Ai:\n" +
+      "/ai [prompt] - Generate AI response\n" +
       "🔸 Other:\n" +
       "/start - Start the bot\n" +
       "/help - Show this help message"

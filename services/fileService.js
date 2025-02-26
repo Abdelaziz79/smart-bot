@@ -81,7 +81,7 @@ const downloadDocument = async (msg, bot) => {
   }
 };
 
-const downloadVideo = async (msg, bot) => {
+const downloadVideoLocally = async (msg, bot) => {
   const chatId = msg.chat.id;
   const video = msg.video;
 
@@ -126,6 +126,6 @@ const deleteFile = async (file) => {
 module.exports = {
   downloadPhoto,
   downloadDocument,
-  downloadVideo,
+  downloadVideoLocally,
   deleteFile,
 };

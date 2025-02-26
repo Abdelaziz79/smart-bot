@@ -190,7 +190,7 @@ const handleDocument = async (msg, bot) => {
 const handleVideo = async (msg, bot) => {
   const chatId = msg.chat.id;
   try {
-    const fileData = await fileService.downloadVideo(msg, bot);
+    const fileData = await fileService.downloadVideoLocally(msg, bot);
 
     if (fileData) {
       bot.sendMessage(
