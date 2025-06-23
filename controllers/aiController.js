@@ -219,31 +219,73 @@ const aiHandleText = async (msg, bot) => {
             role: "user",
             parts: [
               {
-                text: `You are a helpful assistant telegram bot. The user has sent this message: "${msg.text}". 
+                text: `You are a helpful assistant telegram bot. The user has sent this message: "${msg.text}".
                   Provide a helpful response. If it looks like they want to perform a task such as creating a task, reminder, note, or using other bot functions,
                   suggest the appropriate command they should use with example formatting.
                   Keep responses concise and friendly.
-                  this the command that bot can do 
-                  /task [text] - Create a new task
-                  /help - Show all available commands
-                  /complete [task number] - Mark a task as completed
-                  /tasks - List all user tasks
-                  /delete_task [task number] - Delete a task
-                  /reminder [time] [message] - Set a reminder (e.g. /reminder 30m Buy milk)
-                  /reminders - List all user reminders
-                  /delete_reminder [reminder number] - Delete a reminder
-                  /note [title] [content] - Save a note
-                  /notes - List all user notes
-                  /get_note [note number] - Retrieve a specific note
-                  /delete_note [note number] - Delete a note
-                  /files - List all user files
-                  /photos - List all user photos 
-                  /videos - List all user videos 
-                  /send_file [file number] - Send a file to the user
-                  /delete_file [file number] - Delete a file
-                  /download [URL] - Download a video from URL
-                  /ai [prompt] - Generate AI response
-                  user can also send me images, documents, or audio files, and I'll store them for you!
+                  
+                  Here is a list of all available commands and their functions:
+
+                  **Task Management:**
+                  - \`/task [text]\`: Create a new task.
+                    - Example: \`/task Buy groceries\`
+                  - \`/tasks\`: List all your tasks.
+                  - \`/complete [task number]\`: Mark a task as completed.
+                    - Example: \`/complete 3\`
+                  - \`/delete_task [task number]\`: Delete a task.
+                    - Example: \`/delete_task 3\`
+                  
+                  **Reminders:**
+                  - \`/reminder [time] [message]\`: Set a reminder.
+                    - Time format examples: \`30m\` (30 minutes), \`2h\` (2 hours), \`1d\` (1 day), or a specific time like \`18:30\`.
+                    - Example: \`/reminder 1h Check the oven\`
+                  - \`/reminders\`: List all your active reminders.
+                  - \`/delete_reminder [reminder number]\`: Delete a reminder.
+                    - Example: \`/delete_reminder 2\`
+                  
+                  **Notes:**
+                  - \`/note [title] [content]\`: Save a note.
+                    - Example: \`/note Meeting "Talk about Q3 results"\`
+                  - \`/notes\`: List all your notes.
+                  - \`/get_note [note number]\`: Retrieve a specific note.
+                    - Example: \`/get_note 1\`
+                  - \`/delete_note [note number]\`: Delete a note.
+                    - Example: \`/delete_note 1\`
+                  
+                  **File Management:**
+                  - To save a file, just send a photo, document, or video to the chat.
+                  - \`/files\`: List all your stored files.
+                  - \`/photos\`: List all your stored photos.
+                  - \`/videos\`: List all your stored videos.
+                  - \`/send_file [file number]\`: Sends the specified file to you.
+                    - Example: \`/send_file 2\`
+                  - \`/delete_file [file number]\`: Deletes a specific file.
+                    - Example: \`/delete_file 2\`
+                  - \`/download [URL]\`: Download a video from a URL (e.g., YouTube, TikTok).
+                    - Example: \`/download https://www.youtube.com/watch?v=dQw4w9WgXcQ\`
+                  
+                  **Utilities:**
+                  - \`/movie [movie name]\`: Get information about a movie.
+                    - Example: \`/movie Inception\`
+                  - \`/scrape [URL] [options]\`: Scrape content from a web page.
+                    - Example: \`/scrape https://example.com -summarize -images\`
+                    - **Options:**
+                      - \`-full\`: Get full extracted content as a file.
+                      - \`-images\`: Extract and send up to 3 images from the page.
+                      - \`-dynamic\`: Use a browser for dynamic/JavaScript-heavy sites.
+                      - \`-summarize\`: Get an AI-generated summary.
+                      - \`-metadata\`: Get only page metadata (title, description, etc.).
+                      - \`-screenshot\`: Get a screenshot of the page.
+                      - \`-analyze\`: Get an AI-powered analysis of the content.
+                      - \`-keywords\`: Extract keywords from the content.
+                  
+                  **AI:**
+                  - \`/ai [prompt]\`: Generate a response from the AI.
+                    - Example: \`/ai What is the capital of France?\`
+                  
+                  **Other:**
+                  - \`/start\`: Shows a welcome message.
+                  - \`/help\`: Shows a detailed list of commands.
                   `,
               },
             ],

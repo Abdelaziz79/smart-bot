@@ -34,9 +34,12 @@ A powerful and feature-rich Telegram bot built with Node.js that serves as a per
 - List only photos: `/photos`
 - List only videos: `/videos`
 - Retrieve a file: `/send_file [file number]`
-- Delete a file: `/delete_file [file number]`
 
-### 🎥 Video Downloader
+### 🌐 Web Scraper
+
+- Scrape content from a URL: `/scrape [URL]`
+
+### 🎬 Video Downloader
 
 - Download videos from multiple platforms: `/download [URL]`
 - Supported platforms:
@@ -73,7 +76,7 @@ A powerful and feature-rich Telegram bot built with Node.js that serves as a per
    ```
 4. **Create required directories:**
    ```sh
-   mkdir uploads downloads
+   mkdir uploads downloads temp
    ```
 
 ---
@@ -116,8 +119,10 @@ A powerful and feature-rich Telegram bot built with Node.js that serves as a per
 ├── models/            # Database models
 ├── routes/            # Bot route definitions
 ├── services/          # Business logic
-├── uploads/           # File storage
-└── downloads/         # Downloaded videos
+├── storage/           # For session and request queues
+├── temp/              # For temporary files
+├── uploads/           # File storage for user uploads
+└── downloads/         # For downloaded videos
 ```
 
 ---

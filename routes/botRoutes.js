@@ -111,6 +111,11 @@ module.exports = (bot) => {
     fileController.handleDownload(msg, match, bot)
   );
 
+  // Delete file command
+  bot.onText(/\/delete_file (\d+)/, (msg, match) =>
+    fileController.deleteFile(msg, match, bot)
+  );
+
   // Handle regular messages
   bot.on("message", (msg) => aiController.aiHandleText(msg, bot));
 

@@ -20,10 +20,12 @@ const handleText = async (msg, bot) => {
       "/get_note [note number] - Retrieve a specific note\n" +
       "/delete_note [note number] - Delete a note\n" +
       "/files - List all your files\n" +
-      "/photos - List all your photos\n" + // Added
-      "/videos - List all your videos\n" + // Added
+      "/photos - List all your photos\n" +
+      "/videos - List all your videos\n" +
       "/send_file [file number] - Send a file to the user\n" +
       "/delete_file [file number] - Delete a file\n" +
+      "/scrape [URL] - Scrape content from a URL\n" +
+      "/movie [movie name] - Get information about a movie\n" +
       "/download [URL] - Download a video from URL\n" +
       "/ai [prompt] - Generate AI response\n\n" +
       "You can also send me images, documents, or audio files, and I'll store them for you!"
@@ -53,14 +55,16 @@ const handleHelp = (msg, bot) => {
       "🔸 Files:\n" +
       "Just send me any file to store it\n" +
       "/files - List all your files\n" +
-      "/photos - List all your photos\n" + // Added
-      "/videos - List all your videos\n" + // Added
+      "/photos - List all your photos\n" +
+      "/videos - List all your videos\n" +
       "/send_file [file number] - Send a file to the user\n" +
       "/delete_file [file number] - Delete a file\n\n" +
-      "🔸 Downloader:\n" +
-      "/download [URL] - Download a video from URL\n" +
-      "🔸 Ai:\n" +
-      "/ai [prompt] - Generate AI response\n" +
+      "🔸 Utilities:\n" +
+      "/scrape [URL] - Scrape content from a URL\n" +
+      "/movie [movie name] - Get information about a movie\n" +
+      "/download [URL] - Download a video from URL\n\n" +
+      "🔸 AI:\n" +
+      "/ai [prompt] - Generate AI response\n\n" +
       "🔸 Other:\n" +
       "/start - Start the bot\n" +
       "/help - Show this help message"
