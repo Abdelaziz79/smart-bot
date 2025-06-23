@@ -60,8 +60,8 @@ A powerful and feature-rich Telegram bot built with Node.js that serves as a per
 
 1. **Clone the repository:**
    ```sh
-   git clone [repository-url]
-   cd [project-directory]
+   git clone https://github.com/Abdelaziz79/smart-bot
+   cd smart-bot
    ```
 2. **Install dependencies:**
    ```sh
@@ -88,6 +88,7 @@ A powerful and feature-rich Telegram bot built with Node.js that serves as a per
 - **Node.js** (14+ recommended)
 - **MongoDB** (for storing tasks, reminders, and notes)
 - **FFmpeg** (for video processing)
+- **Python** (required by `youtube-dl-exec` for some operations)
 
 ### Required API Keys
 
@@ -171,13 +172,13 @@ A powerful and feature-rich Telegram bot built with Node.js that serves as a per
 
 ## 📜 License
 
-This project is licensed under the **ISC License**.
+This project is licensed under the **MIT License**.
 
 ---
 
 ## 👨‍💻 Author
 
-[Your Name]
+[Abdelaziz79](https://github.com/Abdelaziz79)
 
 ---
 
